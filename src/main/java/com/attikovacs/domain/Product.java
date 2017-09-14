@@ -2,27 +2,29 @@ package com.attikovacs.domain;
 
 import java.math.BigDecimal;
 
-public class Product {
+public class Product implements DomainObject {
 
     private Integer id;
     private String description;
     private String imageUrl;
     private BigDecimal price;
 
+	@Override
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public void setId(Integer id) {
+		this.id = id;
+	}
+    
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getImageUrl() {
@@ -40,4 +42,5 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
 }

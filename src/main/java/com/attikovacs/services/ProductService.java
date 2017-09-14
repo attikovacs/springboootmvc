@@ -1,15 +1,7 @@
 package com.attikovacs.services;
 
-import java.util.List;
-
 import com.attikovacs.domain.Product;
 
-public interface ProductService {
-    List<Product> listAllProducts();
+public interface ProductService extends ServiceInterface<Product> {
     
-    Product getProductById(Integer id);
-    
-    Product saveOrUpdateProduct(Product product);
-    
-    void deleteProduct(Integer id);
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.attikovacs.domain.Product;
 import com.attikovacs.services.ProductService;
 
+@RequestMapping(value = "/products")
 @Controller
 public class ProductController {
 
@@ -20,50 +21,50 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@RequestMapping(value = "/products")
-	public String listProducts(Model model) {
-		model.addAttribute("products", productService.listAllProducts());
+	@RequestMapping(value = "")
+	public String list(Model model) {
+		model.addAttribute("products", productService.listAll());
 		System.out.println("Returning products");
-		return "products";
+		return "product/list";
 	}
 
-	@RequestMapping(value = "/product/{id}")
-	public String showProduct(@PathVariable Integer id, Model model) {
-		model.addAttribute("product", productService.getProductById(id));
+	@RequestMapping(value = "/{id}")
+	public String show(@PathVariable Integer id, Model model) {
+		model.addAttribute("product", productService.getById(id));
 		System.out.println("Showing product " + id);
 
-		return "product";
+		return "product/show";
 	}
 
-	@RequestMapping(value = "/product/new")
-	public String newProduct(Model model) {
+	@RequestMapping(value = "/new")
+	public String add(Model model) {
 		model.addAttribute("product", new Product());
 		System.out.println("Adding product");
 		
-		return "productform";
+		return "product/form";
 	}
 	
-	@RequestMapping(value = "/product/edit/{id}")
-	public String editProduct(@PathVariable Integer id, Model model) {
-		model.addAttribute("product", productService.getProductById(id));
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public String save(Product product) {
+		Product newProduct = productService.saveOrUpdate(product);
+		System.out.println("Saving product");
+		return "redirect:/products/edit/" + newProduct.getId();
+	}
+	
+	@RequestMapping(value = "/edit/{id}")
+	public String edit(@PathVariable Integer id, Model model) {
+		model.addAttribute("product", productService.getById(id));
 		System.out.println("Editing product " + id);
 
-		return "productform";
+		return "product/form";
 	}
 
-	@RequestMapping(value = "/product/delete/{id}")
-	public String deleteProduct(@PathVariable Integer id) {
-		productService.deleteProduct(id);
+	@RequestMapping(value = "/delete/{id}")
+	public String delete(@PathVariable Integer id) {
+		productService.delete(id);
 		System.out.println("Deleting product " + id);
 
 		return "redirect:/products";
-	}
-	
-	@RequestMapping(value = "/product", method = RequestMethod.POST)
-	public String save(Product product) {
-		Product newProduct = productService.saveOrUpdateProduct(product);
-		System.out.println("Saving product");
-		return "redirect:/product/edit/" + newProduct.getId();
 	}
 
 }

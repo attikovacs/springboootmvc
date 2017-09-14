@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Customer List</title>
+
+	<link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" 
+	th:href="@{webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen"/>
+   
+</head>
+<body>
+<div class="container">
+
+    <div th:if="${not #lists.isEmpty(customers)}">
+        <h2>Customer List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>State</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}"><a href="/customer/${customer.id}">id</a></td>
+                <td th:text="${customer.firstName}">First Name</td>
+                <td th:text="${customer.lastName}">Last Name</td>
+                <td th:text="${customer.email}">Email</td>
+                <td th:text="${customer.phone}">Phone</td>
+                <td th:text="${customer.address1}">Address Line 1</td>
+                <td th:text="${customer.address2}">Address Line 21</td>
+                <td th:text="${customer.city}">City</td>
+                <td th:text="${customer.zipCode}">Zip Code</td>
+                <td th:text="${customer.state}">State</td>
+                <td><a th:href="${'/customers/' + customer.id}">view</a></td>
+                <td><a th:href="${'/customers/edit/' + customer.id}">edit</a></td>
+                <td><a th:href="${'/customers/delete/' + customer.id}">delete</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10">
+            <a th:href="${'/customers/new'}">New customer</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
