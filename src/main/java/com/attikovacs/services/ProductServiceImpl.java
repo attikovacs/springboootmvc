@@ -1,11 +1,9 @@
 package com.attikovacs.services;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.attikovacs.domain.DomainObject;
 import com.attikovacs.domain.Product;
 
 @Service
