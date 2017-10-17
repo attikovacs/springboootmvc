@@ -8,7 +8,7 @@ public interface ServiceInterface<T> {
     
     T getById(Integer id);
     
-    T saveOrUpdate(T t);
+    T saveOrUpdate(T domainObject);
     
     void delete(Integer id);
 
