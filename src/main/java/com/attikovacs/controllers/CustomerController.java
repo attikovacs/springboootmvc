@@ -48,7 +48,7 @@ public class CustomerController {
 	public String save(Customer customer) {
 		Customer newCustomer = customerService.saveOrUpdate(customer);
 		System.out.println("Saving customer");
-		return "redirect:/customers/edit/" + newCustomer.getId();
+		return "redirect:/customers/" + newCustomer.getId();
 	}
 	
 	@RequestMapping(value = "/edit/{id}")

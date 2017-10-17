@@ -48,7 +48,7 @@ public class ProductController {
 	public String save(Product product) {
 		Product newProduct = productService.saveOrUpdate(product);
 		System.out.println("Saving product");
-		return "redirect:/products/edit/" + newProduct.getId();
+		return "redirect:/products/" + newProduct.getId();
 	}
 	
 	@RequestMapping(value = "/edit/{id}")
