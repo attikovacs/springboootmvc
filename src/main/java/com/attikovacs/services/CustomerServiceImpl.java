@@ -1,10 +1,12 @@
 package com.attikovacs.services;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.attikovacs.domain.Customer;
 
 @Service
+@Profile("map")
 public class CustomerServiceImpl extends AbstractMapService implements CustomerService {
 
 	@Override

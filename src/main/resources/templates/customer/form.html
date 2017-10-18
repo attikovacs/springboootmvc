@@ -15,6 +15,7 @@
     <div>
         <form class="form-horizontal" th:object="${customer}" th:action="@{/customers/new}" method="post">
             <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="*{version}"/>
             <div class="form-group">
                 <label class="col-sm-2 control-label">First Name:</label>
                 <div class="col-sm-10">
@@ -73,7 +74,7 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </div>
             <div class="row">
-                <a th:href="${'/customers'}">back</a>
+                <a th:href="${'/customers'}">Customer list</a>
             </div>
         </form>
     </div>

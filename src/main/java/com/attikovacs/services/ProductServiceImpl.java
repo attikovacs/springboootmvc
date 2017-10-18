@@ -2,11 +2,13 @@ package com.attikovacs.services;
 
 import java.math.BigDecimal;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.attikovacs.domain.Product;
 
 @Service
+@Profile("map")
 public class ProductServiceImpl extends AbstractMapService implements ProductService {
 
     @Override
